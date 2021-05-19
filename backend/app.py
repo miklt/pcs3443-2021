@@ -3,18 +3,20 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 from flask_cors import CORS
-
+import os
 from db import db
 from schema import ma
 
 from resources.user import UserRegister, UserLogin, User, UserLogout
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True
 
-app.secret_key = "michelet"  # could do app.config['JWT_SECRET_KEY'] if we prefer
+#app.secret_key = "michelet"  # could do app.config['JWT_SECRET_KEY'] if we prefer
+app.secret_key = os.environ["JWT_SECRET_KEY"]
 CORS(app)
 api = Api(app)
 

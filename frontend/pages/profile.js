@@ -26,6 +26,7 @@ export async function getServerSideProps(context) {
 
   const { token } = getAppCookies(req)
   const profile = token ? verifyToken(token) : null  
+  console.log(profile,'dentro do getServerProfilePage')
 
   return {
     props: {  

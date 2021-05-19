@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [stateFormError, setStateFormError] = useState([]) // estado para armezar os erros
   const [stateFormValid, setStateFormValid] = useState(false) // o estado inicial da validez do formulário é false
   const [loading, setLoading] = useState(false) // inicializa com false o estado da variável loading
-  const [stateFormMessage, setStateFormMessage] = useState({}) // inicializa com vazia o objeto mensagem
+  const [stateFormMessage, setStateFormMessage] = useState({}) // inicializa com vazia o objeto mensagem (que é apresentado embaixo do botão "enviar")
 
   function onChangeHandler(e) {
     const { name, value } = e.currentTarget // recupera os valores
@@ -24,15 +24,12 @@ export default function LoginPage() {
     })
   }
   async function onSubmitHandler(e) {
-    e.preventDefault()
-
-    /* username */
+    e.preventDefault() // esta linha impede que o formulário seja enviado sem     
     let data = { ...stateFormData }
-    /* Aqui filtramos o conteúdo do stateFormData para que apenas os atributos username,email e 
+    /* Aqui filtramos o conteúdo do stateFormData para que apenas os atributos username e 
     password sejam passados para o endpoint 
     */
     data = { ...data, username: data.username.value || '' }
-
     /* password */
     data = { ...data, password: data.password.value || '' }
     /* validation handler */
@@ -67,7 +64,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Layout>
+    <Layout title={'Tela Inicial da Aplicação'}>
       <LoginForm
         props={{
           onSubmitHandler,
