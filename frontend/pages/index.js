@@ -24,7 +24,7 @@ export default function LoginPage() {
     })
   }
   async function onSubmitHandler(e) {
-    e.preventDefault() // esta linha impede que o formulário seja enviado sem     
+    e.preventDefault() // esta linha impede que o formulário seja enviado sem
     let data = { ...stateFormData }
     /* Aqui filtramos o conteúdo do stateFormData para que apenas os atributos username e 
     password sejam passados para o endpoint 

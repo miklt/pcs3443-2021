@@ -4,12 +4,11 @@ const urlApi = process.env.URL_API_BACKEND
 
 const login = async (req, res) => {
   const { method } = req
-  console.log(urlApi,"api da url?")
+  console.log(urlApi, 'api da url?')
   switch (method) {
-    
     case 'POST':
       const { username, password } = req.body
-      
+
       if (!username || !password) {
         return res.status(400).json({
           success: 'false',
@@ -28,13 +27,14 @@ const login = async (req, res) => {
           token: token,
         })
       } catch (e) {
-        if (e.code == 'ECONNREFUSED'){
+        if (e.code == 'ECONNREFUSED') {
           return res.status(500).json({
             success: false,
-            message: 'ECONNREFUSED: Não é possível se conectar à API no backend!',
+            message:
+              'ECONNREFUSED: Não é possível se conectar à API no backend!',
           })
         }
-        
+
         if (e.response.status == 401) {
           return res.status(401).json({
             success: false,

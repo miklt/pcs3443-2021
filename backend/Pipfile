@@ -14,8 +14,9 @@ flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-cors = "*"
 
-[dev-packages]
 
+[dev-packages]
+black = "*"
 [requires]
 python_version = "3.9"
 

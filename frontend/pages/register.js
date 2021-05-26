@@ -27,7 +27,7 @@ export default function RegisterPage() {
     e.preventDefault()
 
     /* username */
-    let data = { ...stateFormData } 
+    let data = { ...stateFormData }
     /* Aqui filtramos o conteúdo do stateFormData para que apenas os atributos username,email e 
     password sejam passados para o endpoint 
     */
@@ -37,7 +37,6 @@ export default function RegisterPage() {
     /* password */
     data = { ...data, password: data.password.value || '' }
 
-    
     /* validation handler */
     // const isValid = validationHandler(stateFormData) // a validação não será apresentada agora
 
@@ -51,8 +50,8 @@ export default function RegisterPage() {
       const registerApi = await fetch(`${BASE_URL}/register`, {
         method: 'POST',
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       }).catch((error) => {

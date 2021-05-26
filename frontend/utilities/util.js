@@ -11,12 +11,11 @@ const SECRET_KEY = process.env.JWT_KEY
  */
 export function verifyToken(jwtToken) {
   try {
-    //console.log("verificando o token: ", jwt.verify(jwtToken, SECRET_KEY))
-
-    return jwt.verify(jwtToken, SECRET_KEY)
+    const resultado = jwt.verify(jwtToken, SECRET_KEY)
+    console.log('resultado', resultado)
+    return resultado
   } catch (e) {
-    //console.log("error da verificação do token",e.message)
-    return null
+    throw e
   }
 }
 

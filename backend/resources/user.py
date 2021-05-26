@@ -1,12 +1,13 @@
 from flask_restful import Resource
 from flask import request
-from werkzeug.security import safe_str_cmp
+
+# from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import (
     create_access_token,
-    create_refresh_token,    
+    create_refresh_token,
     get_jwt_identity,
     jwt_required,
-    get_jwt,
+    # get_jwt,
 )
 import bcrypt
 from models.user import UserModel
@@ -27,10 +28,10 @@ user_schema = UserSchema()
 class UserRegister(Resource):
     @classmethod
     def post(cls):
-        user_json = request.get_json()        
-        user = user_schema.load(user_json)        
-        user.password = bcrypt.hashpw(user.password.encode('utf8'), bcrypt.gensalt())
-        
+        user_json = request.get_json()
+        user = user_schema.load(user_json)
+        user.password = bcrypt.hashpw(user.password.encode("utf8"), bcrypt.gensalt())
+
         if UserModel.find_by_username(user.username):
             return {"message": USER_ALREADY_EXISTS}, 400
         if UserModel.find_by_email(user.email):
@@ -45,7 +46,7 @@ class User(Resource):
     @classmethod
     def get(cls, user_id: int):
         user = UserModel.find_by_id(user_id)
-        if not user:            
+        if not user:
             return {"message": USER_NOT_FOUND}, 404
 
         return user_schema.dump(user), 200
@@ -67,11 +68,16 @@ class UserLogin(Resource):
         user_data = user_schema.load(user_json)
 
         user = UserModel.find_by_username(user_data.username)
-
-        #if user and safe_str_cmp(user_data.password, user.password):
-        if user and bcrypt.checkpw(user_data.password.encode('utf8'), user.password):
-            additional_claims = {"username": user.username, "email":user.email}
-            access_token = create_access_token(identity=user.id, additional_claims=additional_claims, fresh=True)
+        password_encoded = user_data.password.encode("utf8")
+        # if user and safe_str_cmp(user_data.password, user.password):
+        valido = bcrypt.checkpw(password_encoded, user.password)
+        if user and valido:
+            additional_claims = {"username": user.username, "email": user.email}
+            access_token = create_access_token(
+                identity=user.id,
+                additional_claims=additional_claims,
+                fresh=True,
+            )
             refresh_token = create_refresh_token(user.id)
             return {"access_token": access_token, "refresh_token": refresh_token}, 200
 
@@ -82,8 +88,8 @@ class UserLogout(Resource):
     @classmethod
     @jwt_required()
     def post(cls):
-        jti = get_jwt()["jti"]  # jti is "JWT ID", a unique identifier for a JWT.
-        user_id = get_jwt_identity()        
+        # jti = get_jwt()["jti"]  # jti is "JWT ID", a unique identifier for a JWT.
+        user_id = get_jwt_identity()
         return {"message": USER_LOGGED_OUT.format(user_id)}, 200
 
 

@@ -4,7 +4,7 @@ const KEY = process.env.JWT_KEY
 
 const urlApi = process.env.URL_API_BACKEND
 
-const register = async (req, res) => {  
+const register = async (req, res) => {
   const { method } = req
 
   switch (method) {
@@ -21,19 +21,18 @@ const register = async (req, res) => {
         const resposta = await axios.post(`${urlApi}/register`, {
           username: username,
           password: password,
-          email: email
-        })        
-        
+          email: email,
+        })
+
         return res.status(201).json({
           success: true,
-          message: resposta.data.message          
+          message: resposta.data.message,
         })
       } catch (e) {
-          
         if (e.response.status == 400) {
           return res.status(400).json({
             success: false,
-            message: e.response.data.message
+            message: e.response.data.message,
           })
         }
       }
