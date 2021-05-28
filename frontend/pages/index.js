@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout'
 import LoginForm from '../components/form/LoginForm'
+import CreateAccountBtn from '../components/form/CreateAccountBtn'
 import { FORM_LOGIN_DATA, BASE_URL } from '../components/schemas/forms'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
@@ -75,6 +76,7 @@ export default function LoginPage() {
           stateFormMessage,
         }}
       />
+      <CreateAccountBtn />
     </Layout>
   )
 }

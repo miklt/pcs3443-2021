@@ -7,10 +7,7 @@ function LoginForm({ props }) {
     stateFormMessage,
   } = props
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      method="POST"
-    >
+    <form onSubmit={onSubmitHandler} method="POST">
       <div>
         <label className="block mb-2 text-indigo-500" htmlFor="username">
           username
@@ -22,7 +19,7 @@ function LoginForm({ props }) {
           value={stateFormData.username.value}
           onChange={onChangeHandler}
         ></input>
-      </div>      
+      </div>
       <div>
         <label className="block mb-2 text-indigo-500" htmlFor="password">
           {' '}
@@ -38,12 +35,14 @@ function LoginForm({ props }) {
       </div>
       <div>
         <input
-          className="w-full px-4 py-2 mb-6 font-bold text-white bg-indigo-700 rounded hover:bg-blue-200"
+          className="w-full px-4 py-2 mb-6 font-bold text-white bg-blue-700 rounded hover:bg-blue-500"
           type="submit"
           value="Logar"
         ></input>
       </div>
-      <div><span className="bg-yellow-200">{stateFormMessage.message}</span></div>
+      <div>
+        <span className="bg-yellow-200">{stateFormMessage.message}</span>
+      </div>
     </form>
   )
 }

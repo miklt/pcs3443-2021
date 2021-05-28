@@ -8,7 +8,7 @@ const login = async (req, res) => {
   switch (method) {
     case 'POST':
       const { username, password } = req.body
-
+      console.log(username, password, 'dentro do f')
       if (!username || !password) {
         return res.status(400).json({
           success: 'false',

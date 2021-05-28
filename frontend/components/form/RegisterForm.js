@@ -6,18 +6,15 @@ function RegisterForm({ props }) {
     stateFormError,
     loading,
     stateFormMessage,
-  } = props;
+  } = props
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      method="POST"
-    >
+    <form onSubmit={onSubmitHandler} method="POST">
       <div>
-        <label className="block mb-2 text-indigo-500" htmlFor="username">
+        <label className="block mb-2 text-red-900" htmlFor="username">
           username
         </label>
         <input
-          className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-100"
+          className="w-full p-2 mb-6 text-red-700 border-b-2 border-red-500 outline-none focus:bg-gray-100"
           type="text"
           name="username"
           value={stateFormData.username.value}
@@ -25,11 +22,11 @@ function RegisterForm({ props }) {
         ></input>
       </div>
       <div>
-        <label className="block mb-2 text-indigo-500" htmlFor="email">
+        <label className="block mb-2 text-red-900" htmlFor="email">
           email
         </label>
         <input
-          className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-100"
+          className="w-full p-2 mb-6 text-red-700 border-b-2 border-red-500 outline-none focus:bg-gray-100"
           type="text"
           name="email"
           value={stateFormData.email.value}
@@ -37,12 +34,12 @@ function RegisterForm({ props }) {
         ></input>
       </div>
       <div>
-        <label className="block mb-2 text-indigo-500" htmlFor="password">
+        <label className="block mb-2 text-red-900" htmlFor="password">
           {' '}
           password
         </label>
         <input
-          className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-100"
+          className="w-full p-2 mb-6 text-red-700 border-b-2 border-red-500 outline-none focus:bg-gray-100"
           type="password"
           name="password"
           value={stateFormData.password.value}
@@ -51,12 +48,14 @@ function RegisterForm({ props }) {
       </div>
       <div>
         <input
-          className="w-full px-4 py-2 mb-6 font-bold text-white bg-indigo-700 rounded hover:bg-blue-200"
+          className="w-full px-4 py-2 mb-6 font-bold text-white bg-red-600 rounded hover:bg-red-400"
           type="submit"
           value="Cadastrar"
         ></input>
       </div>
-      <div><span className="bg-yellow-200">{stateFormMessage.message}</span></div>
+      <div>
+        <span className="bg-yellow-200">{stateFormMessage.message}</span>
+      </div>
     </form>
   )
 }

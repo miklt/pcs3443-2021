@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Layout from '../components/layout/Layout'
-import { ProfileCard, LoginLinkCard } from '../components/ProfileCard'
+import LogoutBtn from '../components/form/LogoutBtn'
+import { ProfileCard } from '../components/ProfileCard'
 import { getAppCookies, verifyToken } from '../utilities/util'
 
 const Profile = (props) => {
@@ -11,7 +12,13 @@ const Profile = (props) => {
     <Layout title="Next.js e Autenticação JWT | Página do Perfil">
       <div className="container">
         <main>
-          {!profile ? <LoginLinkCard /> : <ProfileCard profile={profile} />}
+          {!profile ? (
+            <Link href="/">
+              <a>Faça seu Login</a>
+            </Link>
+          ) : (
+            <ProfileCard profile={profile} />
+          )}
           {error ? (
             <span className="text-yellow-200 bg-red-500">Erro: {error}</span>
           ) : (
