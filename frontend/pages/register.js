@@ -1,4 +1,5 @@
 import Layout from '../components/layout/Layout'
+import LoginBtn from '../components/form/LoginBtn'
 import RegisterForm from '../components/form/RegisterForm'
 import Router from 'next/router'
 import { FORM_REGISTER_DATA, BASE_URL } from '../components/schemas/forms'
@@ -69,16 +70,19 @@ export default function RegisterPage() {
 
   return (
     <Layout>
-      <RegisterForm
-        props={{
-          onSubmitHandler,
-          onChangeHandler,
-          loading,
-          stateFormData,
-          stateFormError,
-          stateFormMessage,
-        }}
-      />
+      <div>
+        <RegisterForm
+          props={{
+            onSubmitHandler,
+            onChangeHandler,
+            loading,
+            stateFormData,
+            stateFormError,
+            stateFormMessage,
+          }}
+        />
+        <LoginBtn />
+      </div>
     </Layout>
   )
 }

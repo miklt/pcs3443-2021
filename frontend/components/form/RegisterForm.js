@@ -10,7 +10,7 @@ function RegisterForm({ props }) {
   return (
     <form onSubmit={onSubmitHandler} method="POST">
       <div>
-        <label className="block mb-2 text-red-900" htmlFor="username">
+        <label className="block mb-auto text-red-900" htmlFor="username">
           username
         </label>
         <input

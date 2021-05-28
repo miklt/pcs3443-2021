@@ -65,18 +65,20 @@ export default function LoginPage() {
   }
 
   return (
-    <Layout title={'Tela Inicial da Aplicação'}>
-      <LoginForm
-        props={{
-          onSubmitHandler,
-          onChangeHandler,
-          loading,
-          stateFormData,
-          stateFormError,
-          stateFormMessage,
-        }}
-      />
-      <CreateAccountBtn />
+    <Layout title={'Componente de Login'}>
+      <div className="flex flex-col">
+        <LoginForm
+          props={{
+            onSubmitHandler,
+            onChangeHandler,
+            loading,
+            stateFormData,
+            stateFormError,
+            stateFormMessage,
+          }}
+        />
+        <CreateAccountBtn />
+      </div>
     </Layout>
   )
 }

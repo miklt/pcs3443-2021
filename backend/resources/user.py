@@ -66,10 +66,8 @@ class UserLogin(Resource):
     def post(cls):
         user_json = request.get_json()
         user_data = user_schema.load(user_json)
-
         user = UserModel.find_by_username(user_data.username)
         password_encoded = user_data.password.encode("utf8")
-        # if user and safe_str_cmp(user_data.password, user.password):
         valido = bcrypt.checkpw(password_encoded, user.password)
         if user and valido:
             additional_claims = {"username": user.username, "email": user.email}

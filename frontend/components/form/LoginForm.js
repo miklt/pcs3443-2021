@@ -9,7 +9,7 @@ function LoginForm({ props }) {
   return (
     <form onSubmit={onSubmitHandler} method="POST">
       <div>
-        <label className="block mb-2 text-indigo-500" htmlFor="username">
+        <label className="block mb-auto text-indigo-500 " htmlFor="username">
           username
         </label>
         <input

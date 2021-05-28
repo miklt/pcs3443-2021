@@ -25,6 +25,7 @@ const Profile = (props) => {
             <div></div>
           )}
         </main>
+        <LogoutBtn />
       </div>
     </Layout>
   )
