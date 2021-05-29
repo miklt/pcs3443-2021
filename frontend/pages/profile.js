@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Layout from '../components/layout/Layout'
 import LogoutBtn from '../components/form/LogoutBtn'
+import LoginBtn from '../components/form/LoginBtn'
 import { ProfileCard } from '../components/ProfileCard'
 import { getAppCookies, verifyToken } from '../utilities/util'
 
@@ -12,31 +13,27 @@ const Profile = (props) => {
     <Layout title="Next.js e Autenticação JWT | Página do Perfil">
       <div className="container">
         <main>
-          {!profile ? (
-            <Link href="/">
-              <a>Faça seu Login</a>
-            </Link>
+          {!profile || error ? (
+            <div className="flex flex-col">
+              <span className="bg-yellow-300">
+                O perfil não pode ser carregado.
+              </span>
+              <span className="bg-yellow-300">Mensagem Erro: {error}</span>
+              <LoginBtn className="" />
+            </div>
           ) : (
-            <ProfileCard profile={profile} />
-          )}
-          {error ? (
-            <span className="text-yellow-200 bg-red-500">Erro: {error}</span>
-          ) : (
-            <div></div>
-          )}
+            <div>
+              <ProfileCard profile={profile} />
+              <LogoutBtn />
+            </div>
+          )}{' '}
         </main>
-        <LogoutBtn />
       </div>
     </Layout>
   )
 }
 export async function getServerSideProps(context) {
   const { req } = context
-
-  //const { origin } = absoluteUrl(req)
-
-  //const baseApiUrl = `${origin}/api/about`
-
   const { token } = getAppCookies(req)
   let profile = null
   let error = null
