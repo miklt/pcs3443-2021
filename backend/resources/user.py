@@ -7,13 +7,12 @@ from flask_jwt_extended import (
     create_refresh_token,
     get_jwt_identity,
     jwt_required,
-    # get_jwt,
 )
 import bcrypt
 from models.user import UserModel
 from schemas.user import UserSchema
 
-
+# Mensagens pré-definidas
 USER_ALREADY_EXISTS = "Um usuário com esse login já existe."
 USER_EMAIL_ALREADY_EXISTS = "Um usuário com esse email já existe."
 CREATED_SUCCESSFULLY = "Usuário criado com sucesso."
