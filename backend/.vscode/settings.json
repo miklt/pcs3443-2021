@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "/home/m/.local/share/virtualenvs/backend-3N7TvKzc/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.linting.flake8Args": ["--max-line-length=88"] ,
+    "editor.formatOnSave": true,
+    "python.linting.lintOnSave": true,
+}
