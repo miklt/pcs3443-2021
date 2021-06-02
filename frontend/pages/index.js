@@ -36,13 +36,14 @@ export default function LoginPage() {
     /* validation handler */
     // const isValid = validationHandler(stateFormData) // a validação não será apresentada agora
 
-    const isValid = true
+    const isValid = true // por agora, será considerado que o formulário sempre é válido
 
     if (isValid) {
       // Call an external API endpoint to get posts.
       // You can use any data fetching library
       setLoading(!loading)
       // não esquecer de configurar o CORS no backend!
+      // a seguinte linha acessa a api 'login' do front-end
       const registerApi = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
         headers: {

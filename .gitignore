@@ -116,3 +116,4 @@ dist
 .pnp.*
 frontend/.env.local
 backend/.env.local
+frontend/.next/
