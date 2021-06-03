@@ -66,7 +66,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Layout title={'Componente de Login'}>
+    <Layout title={'Login'}>
       <div className="flex flex-col">
         <LoginForm
           props={{

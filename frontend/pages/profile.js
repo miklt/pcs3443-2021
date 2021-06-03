@@ -10,7 +10,7 @@ const Profile = (props) => {
   const { profile, error } = props
 
   return (
-    <Layout title="Next.js e Autenticação JWT | Página do Perfil">
+    <Layout title="Perfil">
       <div className="container">
         <main>
           {!profile || error ? (
@@ -47,9 +47,6 @@ export async function getServerSideProps(context) {
       },
     }
   }
-
-  console.log(profile, 'dentro do getServerProfilePage')
-
   return {
     props: {
       profile,

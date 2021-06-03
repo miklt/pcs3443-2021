@@ -3,11 +3,8 @@ import React from 'react'
 const ProfileCard = ({ profile }) => {
   return (
     <div className="container flex-col ">
+      <h3 className="text-xl text-blue-500 txt-center">Dados do seu perfil</h3>
       <div className="mt-2 text-left">
-        <h3 className="text-xl text-blue-500 txt-center">
-          Dados do seu perfil
-        </h3>
-
         <div>
           <span className="text-xl">Username:</span>
           <span className="text-lg text-green-700">{profile.username}</span>

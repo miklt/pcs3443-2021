@@ -69,7 +69,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <Layout>
+    <Layout title="Página de Cadastro de Usuário">
       <div>
         <RegisterForm
           props={{
