@@ -1,0 +1,3 @@
+deploy:
+  - okteto build -t okteto.dev/pcs3443-backend:latest ./backend
+  - kubectl apply -f k8s

@@ -29,7 +29,9 @@ class UserRegister(Resource):
     def post(cls):
         user_json = request.get_json()
         user = user_schema.load(user_json)
-        user.password = bcrypt.hashpw(user.password.encode("utf8"), bcrypt.gensalt())
+
+        user.password = bcrypt.hashpw(user.password.encode("utf-8"), bcrypt.gensalt())
+        user.password = user.password.decode("utf-8", "ignore")
 
         if UserModel.find_by_username(user.username):
             return {"message": USER_ALREADY_EXISTS}, 400
@@ -66,17 +68,22 @@ class UserLogin(Resource):
         user_json = request.get_json()
         user_data = user_schema.load(user_json)
         user = UserModel.find_by_username(user_data.username)
-        password_encoded = user_data.password.encode("utf8")
-        valido = bcrypt.checkpw(password_encoded, user.password)
-        if user and valido:
-            additional_claims = {"username": user.username, "email": user.email}
-            access_token = create_access_token(
-                identity=user.id,
-                additional_claims=additional_claims,
-                fresh=True,
-            )
-            refresh_token = create_refresh_token(user.id)
-            return {"access_token": access_token, "refresh_token": refresh_token}, 200
+        password_encoded = user_data.password.encode("utf-8")
+        if user:
+
+            valido = bcrypt.checkpw(password_encoded, user.password.encode("utf-8"))
+            if valido:
+                additional_claims = {"username": user.username, "email": user.email}
+                access_token = create_access_token(
+                    identity=user.id,
+                    additional_claims=additional_claims,
+                    fresh=True,
+                )
+                refresh_token = create_refresh_token(user.id)
+                return {
+                    "access_token": access_token,
+                    "refresh_token": refresh_token,
+                }, 200
 
         return {"message": INVALID_CREDENTIALS}, 401
 

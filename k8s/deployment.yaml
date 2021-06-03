@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pcs3443
+spec:
+  selector:
+    matchLabels:
+      app: pcs3443
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pcs3443
+    spec:
+      containers:
+      - name: pcs3443
+        image: okteto.dev/pcs3443-backend:latest
+        ports:
+        - containerPort: 5000

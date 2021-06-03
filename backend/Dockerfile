@@ -32,8 +32,5 @@ USER appuser
 
 # Install application into container
 COPY . .
-# ENV SQLALCHEMY_DATABASE_URI sqlite:///data.db
-# ENV JWT_SECRET_KEY segredo
-# Run the application
+
 ENTRYPOINT ["python", "-m", "app"]
-CMD ["--directory", "directory", "8000"]
