@@ -48,7 +48,7 @@ export default function RegisterPage() {
       // You can use any data fetching library
       setLoading(!loading)
       // não esquecer de configurar o CORS no backend!
-      const registerApi = await fetch(`${BASE_URL}/register`, {
+      const registerApi = await fetch(`${BASE_URL}/api/register`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

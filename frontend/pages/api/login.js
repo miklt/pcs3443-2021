@@ -25,6 +25,7 @@ const login = async (req, res) => {
         return res.status(200).json({
           success: true,
           token: token,
+          message: 'Login realizado com sucesso',
         })
       } catch (e) {
         if (e.code == 'ECONNREFUSED') {

@@ -44,7 +44,7 @@ export default function LoginPage() {
       setLoading(!loading)
       // não esquecer de configurar o CORS no backend!
       // a seguinte linha acessa a api 'login' do front-end
-      const registerApi = await fetch(`${BASE_URL}/login`, {
+      const registerApi = await fetch(BASE_URL + '/api/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
