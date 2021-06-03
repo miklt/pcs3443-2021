@@ -2,7 +2,7 @@ import Layout from '../components/layout/Layout'
 import LoginBtn from '../components/form/LoginBtn'
 import RegisterForm from '../components/form/RegisterForm'
 import Router from 'next/router'
-import { FORM_REGISTER_DATA, BASE_URL } from '../components/schemas/forms'
+import { FORM_REGISTER_DATA } from '../components/schemas/forms'
 import { useState } from 'react'
 
 export default function RegisterPage() {
@@ -11,7 +11,7 @@ export default function RegisterPage() {
   const [stateFormValid, setStateFormValid] = useState(false) // o estado inicial da validez do formulário é false
   const [loading, setLoading] = useState(false) // inicializa com false o estado da variável loading
   const [stateFormMessage, setStateFormMessage] = useState({}) // inicializa com vazia o objeto mensagem
-
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
   function onChangeHandler(e) {
     const { name, value } = e.currentTarget // recupera os valores
 
@@ -48,7 +48,7 @@ export default function RegisterPage() {
       // You can use any data fetching library
       setLoading(!loading)
       // não esquecer de configurar o CORS no backend!
-      const registerApi = await fetch(`${BASE_URL}/api/register`, {
+      const registerApi = await fetch(BASE_URL + '/api/register', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

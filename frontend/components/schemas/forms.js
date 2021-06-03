@@ -1,8 +1,8 @@
 const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,2|3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const passwordRegEx = /^[a-z\sA-Z0-9\W\w]+$/
 const usernameRegEx = /^[a-z\s0-9]+$/
-// const BASE_URL = 'http://localhost:3000/api'
-const BASE_URL = process.env.BASE_URL
+// const BASE_URL = 'http://localhost:3000'
+//const BASE_URL = process.env.BASE_URL
 /* login schemas */
 const FORM_LOGIN_DATA = {
   username: {
@@ -64,4 +64,4 @@ const FORM_REGISTER_DATA = {
   },
 }
 
-export { FORM_LOGIN_DATA, FORM_REGISTER_DATA, BASE_URL }
+export { FORM_LOGIN_DATA, FORM_REGISTER_DATA }

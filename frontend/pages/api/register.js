@@ -10,7 +10,7 @@ const register = async (req, res) => {
   switch (method) {
     case 'POST':
       const { username, email, password } = req.body
-      /* Any how username or password is blank */
+      /* Caso o usuário ou senha ou email estiverem em branco... */
       if (!username || !password || !email) {
         return res.status(400).json({
           success: false,
@@ -29,6 +29,13 @@ const register = async (req, res) => {
           message: resposta.data.message,
         })
       } catch (e) {
+        if (e.code == 'ECONNREFUSED') {
+          return res.status(500).json({
+            success: false,
+            message:
+              'ECONNREFUSED: Não é possível se conectar à API no backend!',
+          })
+        }
         if (e.response.status == 400) {
           return res.status(400).json({
             success: false,

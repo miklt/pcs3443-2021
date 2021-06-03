@@ -1,7 +1,7 @@
 import Layout from '../components/layout/Layout'
 import LoginForm from '../components/form/LoginForm'
 import CreateAccountBtn from '../components/form/CreateAccountBtn'
-import { FORM_LOGIN_DATA, BASE_URL } from '../components/schemas/forms'
+import { FORM_LOGIN_DATA } from '../components/schemas/forms'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 import Router from 'next/router'
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [stateFormValid, setStateFormValid] = useState(false) // o estado inicial da validez do formulário é false
   const [loading, setLoading] = useState(false) // inicializa com false o estado da variável loading
   const [stateFormMessage, setStateFormMessage] = useState({}) // inicializa com vazia o objeto mensagem (que é apresentado embaixo do botão "enviar")
-
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
   function onChangeHandler(e) {
     const { name, value } = e.currentTarget // recupera os valores
 
