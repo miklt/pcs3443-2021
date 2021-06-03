@@ -6,10 +6,11 @@ from flask_cors import CORS
 import os
 from db import db
 from schema import ma
-
+from dotenv import load_dotenv
 from resources.user import UserRegister, UserLogin, User, UserLogout
 
 app = Flask(__name__)
+load_dotenv()
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["SQLALCHEMY_DATABASE_URI"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -43,4 +44,4 @@ api.add_resource(UserLogout, "/logout")
 if __name__ == "__main__":
     db.init_app(app)
     ma.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

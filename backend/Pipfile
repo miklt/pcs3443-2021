@@ -13,10 +13,11 @@ marshmallow = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-cors = "*"
-
+python-dotenv = "*"
 
 [dev-packages]
 black = "*"
+
 [requires]
 python_version = "3.9"
 

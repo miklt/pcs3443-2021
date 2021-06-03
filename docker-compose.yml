@@ -1,0 +1,11 @@
+version: '3'
+services:
+    backend:
+        build: ./backend
+        ports: 
+            - "5000:5000"
+        restart: always
+        environment: 
+            SQLALCHEMY_DATABASE_URI: sqlite:///data.db
+            JWT_SECRET_KEY: segredo
+          

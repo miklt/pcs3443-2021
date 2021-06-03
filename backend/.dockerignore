@@ -1,0 +1,6 @@
+.vscode
+.env.example
+
+# ... except for dependencies and source
+!Pipfile
+!Pipfile.lock
