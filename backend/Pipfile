@@ -15,6 +15,7 @@ marshmallow-sqlalchemy = "*"
 flask-cors = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+colorama = "*"
 
 [dev-packages]
 black = "*"
