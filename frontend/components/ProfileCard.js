@@ -7,7 +7,7 @@ const ProfileCard = ({ profile }) => {
       <div className="mt-2 text-left">
         <div>
           <span className="text-xl">Username:</span>
-          <span className="text-xl text-blue-800 border border-black">
+          <span className="text-3xl text-blue-800 border border-black">
             {profile.username}
           </span>
         </div>
