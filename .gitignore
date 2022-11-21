@@ -117,3 +117,4 @@ dist
 frontend/.env.local
 backend/.env.local
 frontend/.next/
+frontend/cypress/videos/**
