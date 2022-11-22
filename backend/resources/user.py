@@ -20,6 +20,7 @@ USER_NOT_FOUND = "Usuário não encontrado."
 USER_DELETED = "Usuário removido."
 INVALID_CREDENTIALS = "Credenciais inválidas."
 USER_LOGGED_OUT = "Usuário <id={user_id}> deslogado com sucesso."
+MESSAGE_SERVER_OK = "Servidor funcionando corretamente"
 
 user_schema = UserSchema()
 
@@ -104,3 +105,8 @@ class TokenRefresh(Resource):
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user, fresh=False)
         return {"access_token": new_token}, 200
+
+class ServerStatus(Resource):
+    @classmethod
+    def get(cls):        
+        return {'message':MESSAGE_SERVER_OK}, 200
