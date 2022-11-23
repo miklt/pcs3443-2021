@@ -16,7 +16,7 @@ services:
         restart: always
         environment: 
             SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://login:senha@db/pcs3443?client_encoding=utf8
-
+            JWT_SECRET_KEY: segredo
         #    SQLALCHEMY_DATABASE_URI: sqlite:///data.db
         #    JWT_SECRET_KEY: segredo
     

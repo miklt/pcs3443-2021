@@ -41,7 +41,9 @@ function LoginForm({ props }) {
         ></input>
       </div>
       <div>
-        <span className="bg-yellow-200">{stateFormMessage.message}</span>
+        <span id="statusMessage" className="bg-yellow-200">
+          {stateFormMessage.message}
+        </span>
       </div>
     </form>
   )
