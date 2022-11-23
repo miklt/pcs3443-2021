@@ -34,11 +34,13 @@ const Profile = (props) => {
 }
 export async function getServerSideProps(context) {
   const { req } = context
-  const { token } = getAppCookies(req)
+  const { token } = await getAppCookies(req)
   let profile = null
   let error = null
+
   try {
-    profile = verifyToken(token)
+    profile = await verifyToken(token)
+    //console.log(profile)
   } catch (e) {
     return {
       props: {

@@ -3,7 +3,7 @@ import Router from 'next/router'
 
 const CreateAccountBtn = () => {
   const redirectToCreateAccount = () => {
-    console.log('dentro do redirect')
+    //console.log('dentro do redirect')
     Router.push('/register') //redireciona para a tela de cadastro.
   }
 

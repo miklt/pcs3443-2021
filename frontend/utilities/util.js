@@ -9,10 +9,10 @@ const SECRET_KEY = process.env.JWT_KEY
  * @params {jwtToken} extracted from cookies
  * @return {object} object of extracted token
  */
-export function verifyToken(jwtToken) {
+export async function verifyToken(jwtToken) {
   try {
     const resultado = jwt.verify(jwtToken, SECRET_KEY)
-    console.log('resultado', resultado)
+    //console.log('resultado', resultado)
     return resultado
   } catch (e) {
     throw e
@@ -23,7 +23,7 @@ export function verifyToken(jwtToken) {
  * @params {request} extracted from request response
  * @return {object} object of parse jwt cookie decode object
  */
-export function getAppCookies(req) {
+export async function getAppCookies(req) {
   const parsedItems = {}
   if (req.headers.cookie) {
     const cookiesItems = req.headers.cookie.split('; ')

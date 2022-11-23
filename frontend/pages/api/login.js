@@ -4,7 +4,7 @@ const urlApi = process.env.URL_API_BACKEND
 
 const login = async (req, res) => {
   const { method } = req
-  console.log(urlApi, 'api da url?')
+  //console.log(urlApi, 'api da url?')
   switch (method) {
     case 'POST':
       const { username, password } = req.body
@@ -15,10 +15,19 @@ const login = async (req, res) => {
         })
       }
       try {
-        const resposta = await axios.post(`${urlApi}/login`, {
-          username: username,
-          password: password,
-        })
+        const resposta = await axios.post(
+          `${urlApi}/login`,
+          {
+            username: username,
+            password: password,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': true,
+            },
+          }
+        )
 
         const token = resposta.data.access_token
         return res.status(200).json({
