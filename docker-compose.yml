@@ -7,6 +7,8 @@ services:
             POSTGRES_PASSWORD: "senha"
             POSTGRES_USER: "login"
             POSTGRES_DB: "pcs3443"
+        ports:
+            - "5432:5432"
     backend:
         depends_on: 
             - db

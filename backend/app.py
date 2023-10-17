@@ -7,7 +7,14 @@ import os
 from db import db
 from schema import ma
 from dotenv import load_dotenv
-from resources.user import UserRegister, UserLogin, User, UserLogout, ServerStatus
+from resources.user import (
+    UserRegister,
+    UserLogin,
+    User,
+    UserLogout,
+    ServerStatus,
+    UserDelete,
+)
 
 app = Flask(__name__)
 load_dotenv()
@@ -41,6 +48,7 @@ api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
 api.add_resource(UserLogout, "/logout")
 api.add_resource(ServerStatus, "/status")
+api.add_resource(UserDelete, "/remove/<user_name>")
 
 if __name__ == "__main__":
     db.init_app(app)

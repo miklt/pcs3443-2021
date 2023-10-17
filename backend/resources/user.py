@@ -71,7 +71,6 @@ class UserLogin(Resource):
         user = UserModel.find_by_username(user_data.username)
         password_encoded = user_data.password.encode("utf-8")
         if user:
-
             valido = bcrypt.checkpw(password_encoded, user.password.encode("utf-8"))
             if valido:
                 additional_claims = {"username": user.username, "email": user.email}
@@ -87,6 +86,18 @@ class UserLogin(Resource):
                 }, 200
 
         return {"message": INVALID_CREDENTIALS}, 401
+
+
+class UserDelete(Resource):
+    @classmethod
+    def delete(cls, user_name):
+        print(user_name, "nome do usuario")
+        user = UserModel.find_by_username(user_name)
+        if not user:
+            return {"message": USER_NOT_FOUND}, 204
+
+        user.delete_from_db()
+        return {"message": USER_DELETED}, 201
 
 
 class UserLogout(Resource):
@@ -106,7 +117,8 @@ class TokenRefresh(Resource):
         new_token = create_access_token(identity=current_user, fresh=False)
         return {"access_token": new_token}, 200
 
+
 class ServerStatus(Resource):
     @classmethod
-    def get(cls):        
-        return {'message':MESSAGE_SERVER_OK}, 200
+    def get(cls):
+        return {"message": MESSAGE_SERVER_OK}, 200
