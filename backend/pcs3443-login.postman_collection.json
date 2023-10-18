@@ -1,16 +1,31 @@
 {
 	"info": {
-		"_postman_id": "8cc3e552-24fa-42a1-ad3d-e4ddce67ef75",
-		"name": "ARAC-Section02-Marshmallow",
+		"_postman_id": "9d1bbb09-ce57-42e7-909a-0a1b2052de15",
+		"name": "pcs3443-login",
 		"description": "This collection contains the requests for the section 01 code of the Advanced REST API Course.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4391762"
 	},
 	"item": [
 		{
-			"name": "users",
+			"name": "usuarios",
 			"item": [
 				{
-					"name": "register a new user",
+					"name": "cadastro de novo usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.test(\"Mensagem bate com o esperado\", function () {",
+									"    pm.expect(jsonData.message).to.include(\"Usuário criado com sucesso.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -21,7 +36,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"jose\",\n\t\"password\": \"1234\"\n}"
+							"raw": "{\n\t\"username\": \"michelet\",\n\t\"password\": \"123456\",\n    \"email\":\"michelet@usp.br\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/register",
@@ -36,20 +51,98 @@
 					"response": []
 				},
 				{
-					"name": "login",
+					"name": "cadastrar username repetido",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "8c0c0ed6-c206-4c88-9349-429e024e312b",
-								"type": "text/javascript",
 								"exec": [
 									"var jsonData = pm.response.json();",
-									"pm.test(\"access_token not empty\", function () {",
+									"pm.test(\"Mensagem bate com o esperado\", function () {",
+									"    pm.expect(jsonData.message).to.include(\"Um usuário com esse login já existe.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"michelet\",\n\t\"password\": \"123456\",\n    \"email\":\"outroemail@usp.br\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar email repetido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.test(\"Mensagem bate com o esperado\", function () {",
+									"    pm.expect(jsonData.message).to.include(\"Um usuário com esse email já existe.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"outro\",\n\t\"password\": \"123456\",\n    \"email\":\"michelet@usp.br\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login de usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.test(\"access_token definido\", function () {",
 									"    pm.expect(jsonData.access_token).not.eql(undefined);",
 									"});",
 									"",
-									"pm.test(\"refresh token not empty\", function () {",
+									"pm.test(\"refresh token definido\", function () {",
 									"    pm.expect(jsonData.refresh_token).not.eql(undefined);",
 									"});",
 									"// set access token as environement variable",
@@ -64,7 +157,8 @@
 									"} else {",
 									"    postman.setEnvironmentVariable(\"refresh_token\", null);",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -78,7 +172,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\" : \"jose\",\n  \"password\" : \"1234\"\n}"
+							"raw": "{\n  \"username\" : \"michelet\",\n  \"password\" : \"123456\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/login",
@@ -93,63 +187,28 @@
 					"response": []
 				},
 				{
-					"name": "logout",
+					"name": "Login de usuário com credenciais inválidas",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "dc763e9b-e6c7-4ff3-9766-637976a5c64b",
-								"type": "text/javascript",
 								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "refresh token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ad818ea6-8f79-436e-b756-ad878666ae9e",
-								"type": "text/javascript",
-								"exec": [
+									"",
 									"var jsonData = pm.response.json();",
-									"pm.test(\"access_token not empty\", function () {",
-									"    pm.expect(jsonData.access_token).not.eql(undefined);",
+									"pm.test(\"Mensagem bate com o esperado\", function () {",
+									"    pm.expect(jsonData.message).to.include(\"Credenciais inválidas.\");",
 									"});",
-									"// set access token as environement variable",
-									"if (jsonData.access_token !== undefined) {",
-									"    postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
-									"} else {",
-									"    postman.setEnvironmentVariable(\"access_token\", null);",
-									"}"
-								]
+									"",
+									"pm.test(\"access_token não definido\", function () {",
+									"    pm.expect(jsonData.access_token).eql(undefined);",
+									"});",
+									"",
+									"pm.test(\"refresh token não definido \", function () {",
+									"    pm.expect(jsonData.refresh_token).eql(undefined);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -159,23 +218,19 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{refresh_token}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"username\" : \"michelet\",\n  \"password\" : \"1234567\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/refresh",
+							"raw": "{{url}}/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"refresh"
+								"login"
 							]
 						}
 					},
@@ -183,12 +238,29 @@
 				},
 				{
 					"name": "get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.test(\"ID do usuário bate com o esperado\", function () {",
+									"    pm.expect(jsonData.id).eq(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"jose\",\n\t\"password\": \"1234\"\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{url}}/user/1",
@@ -205,12 +277,26 @@
 				},
 				{
 					"name": "delete user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.test(\"Mensagem bate com o esperado\", function () {",
+									"    pm.expect(jsonData.message).to.include(\"Usuário removido.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"jose\",\n\t\"password\": \"1234\"\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{url}}/user/1",
@@ -235,10 +321,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/item/chair",
 							"host": [
@@ -346,10 +428,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\" : \"cristiano\",\n  \"password\" : \"12345678\"\n}"
-						},
 						"url": {
 							"raw": "{{url}}/items",
 							"host": [
@@ -394,10 +472,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/store/My Wonderful Store",
 							"host": [
@@ -438,10 +512,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/stores",
 							"host": [
