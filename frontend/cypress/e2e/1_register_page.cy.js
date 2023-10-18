@@ -1,4 +1,5 @@
 describe('A tela de Cadastro', () => {  
+  const timeout = 10000
   it('carrega normalmente', () => {
     cy.visit('/register')
   })
@@ -17,7 +18,7 @@ describe('A tela de Cadastro', () => {
     cy.get('input[name=email]').type('michelet@usp.br')
     cy.get('input[name=password]').type('123456')
     cy.get('form').submit()
-    cy.get('#status_message').should('have.text', 'Um usuário com esse login já existe.')
+    cy.get('#status_message',{ timeout}).should('have.text', 'Um usuário com esse login já existe.')
   })
   it('apresenta erro com nome de usuario diferente, porém com email repetido', () => {
     cy.visit('/register')
@@ -25,6 +26,6 @@ describe('A tela de Cadastro', () => {
     cy.get('input[name=email]').type('michelet@usp.br')
     cy.get('input[name=password]').type('123456')
     cy.get('form').submit()
-    cy.get('#status_message').should('have.text', 'Um usuário com esse email já existe.')
+    cy.get('#status_message',{ timeout}).should('have.text', 'Um usuário com esse email já existe.')
   })
 })

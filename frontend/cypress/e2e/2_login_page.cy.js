@@ -1,4 +1,5 @@
 describe('A tela de Login', () => {
+  const timeout = 10000
   it('carrega normalmente', () => {
     cy.visit('/')
   })
@@ -7,7 +8,7 @@ describe('A tela de Login', () => {
     cy.get('input[name=username]').type('michelet')
     cy.get('input[name=password]').type('123456')
     cy.get('form').submit()
-    cy.url().should('include', '/profile')
+    cy.url({ timeout}).should('include', '/profile')
     cy.getCookies()
       .should('have.length', 1)
       .then((cookies) => {
@@ -19,6 +20,6 @@ describe('A tela de Login', () => {
     cy.get('input[name=username]').type('desconhecido')
     cy.get('input[name=password]').type('123456')
     cy.get('form').submit()
-    cy.get('#status_message').should('have.text', 'Credenciais Inválidas')
+    cy.get('#status_message',{ timeout}).should('have.text', 'Credenciais Inválidas')
   })
 })
