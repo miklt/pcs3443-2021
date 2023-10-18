@@ -8,7 +8,7 @@ const CreateAccountBtn = () => {
   }
 
   return (
-    <button
+    <button id="criar_conta"
       onClick={redirectToCreateAccount}
       className="w-full h-10 px-0 py-0 mb-6 font-bold text-white bg-pink-700 rounded hover:bg-pink-500"
     >

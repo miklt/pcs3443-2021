@@ -4,6 +4,9 @@ describe('A tela de Cadastro', () => {
     cy.visit('/register')
   })
   it('cadastra um novo usuário', () => {
+    cy.visit("/")
+    cy.get("#criar_conta").click()
+    cy.url().should('contain', '/register')
     cy.request("delete",'http://localhost:3000/api/delete',{username:"michelet"})
     cy.visit('/register')
     cy.get('input[name=username]').type('michelet')
